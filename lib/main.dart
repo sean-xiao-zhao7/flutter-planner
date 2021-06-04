@@ -66,17 +66,33 @@ class MyHomePage extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black, width: 2)),
+                        border: Border.all(color: Colors.purple, width: 2)),
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      transaction.amount.toString(),
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      '\$ ${transaction.amount.toString()}',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.purple),
                     ),
                   ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(transaction.title),
-                      Text(transaction.date.toIso8601String()),
+                      Text(
+                        transaction.title,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.black87),
+                      ),
+                      Text(
+                        transaction.date.toIso8601String(),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Colors.black45),
+                      ),
                     ],
                   ),
                 ]));
