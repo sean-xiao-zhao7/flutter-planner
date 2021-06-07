@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:planner/transaction.dart';
+import 'package:planner/widgets/user_transactions.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,26 +17,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   // This widget is the root of your application.
-  final List<Transaction> transactions = [
-    Transaction(
-      id: '1209kmaosdf',
-      title: "Test",
-      amount: 123,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: '19ujafdas',
-      title: "Test2",
-      amount: 123,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: '09as9djsaio',
-      title: "Test3",
-      amount: 123,
-      date: DateTime.now(),
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -59,45 +39,7 @@ class MyHomePage extends StatelessWidget {
                 elevation: 5,
               ),
             ),
-            Column(
-              children: transactions.map((transaction) {
-                return Card(
-                    child: Row(children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.purple, width: 2)),
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      '\$ ${transaction.amount.toString()}',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.purple),
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        transaction.title,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            color: Colors.black87),
-                      ),
-                      Text(
-                        transaction.date.toIso8601String(),
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                            color: Colors.black45),
-                      ),
-                    ],
-                  ),
-                ]));
-              }).toList(),
-            )
+            UserTransactions()
           ],
         ));
   }
