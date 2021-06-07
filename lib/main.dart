@@ -24,7 +24,8 @@ class MyHomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text('Planner'),
         ),
-        body: Column(
+        body: SingleChildScrollView(
+            child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -41,6 +42,6 @@ class MyHomePage extends StatelessWidget {
             ),
             UserTransactions()
           ],
-        ));
+        )));
   }
 }
