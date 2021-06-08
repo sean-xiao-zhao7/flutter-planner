@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:planner/widgets/transactions_list.dart';
 import './widgets/new_transaction.dart';
@@ -14,9 +13,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Planner',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
-        accentColor: Colors.amber,
-      ),
+          primarySwatch: Colors.purple,
+          accentColor: Colors.amber,
+          fontFamily: 'FiraSans',
+          textTheme: ThemeData.light().textTheme.copyWith(
+                  title: TextStyle(
+                fontFamily: 'FiraSans',
+                fontSize: 18,
+              )),
+          appBarTheme: AppBarTheme(
+            textTheme: ThemeData.light().textTheme.copyWith(
+                title: TextStyle(
+                    fontFamily: 'FiraSans', fontSize: 22, color: Colors.white)),
+          )),
       home: MyHomePage(),
     );
   }
