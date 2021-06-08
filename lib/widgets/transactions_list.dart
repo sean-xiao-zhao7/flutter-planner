@@ -20,7 +20,7 @@ class TransactionsList extends StatelessWidget {
                     height: 12,
                   ),
                   Container(
-                    height: 360,
+                    height: 362,
                     child: Image.asset(
                       'assets/images/1.jpg',
                       fit: BoxFit.contain,
