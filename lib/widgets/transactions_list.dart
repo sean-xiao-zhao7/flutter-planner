@@ -11,47 +11,65 @@ class TransactionsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: 400,
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-            return Card(
-                child: Row(children: <Widget>[
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Theme.of(context).primaryColor, width: 2)),
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  '\$ ${userTransactions[index].amount.toString()}',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.purple),
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+        child: userTransactions.isEmpty
+            ? Column(
                 children: <Widget>[
-                  Text(
-                    userTransactions[index].title,
-                    style: Theme.of(context).textTheme.title,
+                  Text('No transactions.',
+                      style: Theme.of(context).textTheme.title),
+                  SizedBox(
+                    height: 12,
                   ),
-                  Text(
-                    DateFormat('yyyy-mm-dd')
-                        .format(userTransactions[index].date),
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                        color: Colors.black45),
+                  Container(
+                    height: 360,
+                    child: Image.asset(
+                      'assets/images/1.jpg',
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ],
-              ),
-            ]));
-          },
-          itemCount: userTransactions.length,
-          // children: userTransactions.map((transaction) {
-          //   return null;
-          // }).toList(),
-        ));
+              )
+            : ListView.builder(
+                itemBuilder: (context, index) {
+                  return Card(
+                      child: Row(children: <Widget>[
+                    Container(
+                      margin:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: Theme.of(context).primaryColor, width: 2)),
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        '\$ ${userTransactions[index].amount.toString()}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.purple),
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          userTransactions[index].title,
+                          style: Theme.of(context).textTheme.title,
+                        ),
+                        Text(
+                          DateFormat('yyyy-mm-dd')
+                              .format(userTransactions[index].date),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                              color: Colors.black45),
+                        ),
+                      ],
+                    ),
+                  ]));
+                },
+                itemCount: userTransactions.length,
+                // children: userTransactions.map((transaction) {
+                //   return null;
+                // }).toList(),
+              ));
   }
 }
