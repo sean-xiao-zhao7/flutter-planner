@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:planner/widgets/chart.dart';
 import 'package:planner/widgets/transactions_list.dart';
 import './widgets/new_transaction.dart';
 import '../models/transaction.dart';
 
 void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitDown,
+  //   DeviceOrientation.portraitUp,
+  // ]);
   runApp(MyApp());
 }
 
@@ -46,13 +52,13 @@ class _MyHomePageState extends State<MyHomePage> {
       id: '1209kmaosdf',
       title: "Test",
       amount: 123,
-      date: DateTime.now(),
+      date: DateTime.now().subtract(Duration(days: 1)),
     ),
     Transaction(
       id: '19ujafdas',
       title: "Test2",
       amount: 123,
-      date: DateTime.now(),
+      date: DateTime.now().subtract(Duration(days: 2)),
     ),
     Transaction(
       id: '09as9djsaio',
@@ -64,25 +70,25 @@ class _MyHomePageState extends State<MyHomePage> {
       id: '09as9djsaio',
       title: "Test3",
       amount: 123,
-      date: DateTime.now(),
+      date: DateTime.now().subtract(Duration(days: 1)),
     ),
     Transaction(
       id: '09as9djsaio',
       title: "Test3",
       amount: 123,
-      date: DateTime.now(),
+      date: DateTime.now().subtract(Duration(days: 2)),
     ),
     Transaction(
       id: '09as9djsaio',
       title: "Test3",
       amount: 123,
-      date: DateTime.now(),
+      date: DateTime.now().subtract(Duration(days: 3)),
     ),
     Transaction(
       id: '09as9djsaio',
       title: "Test3",
       amount: 123,
-      date: DateTime.now(),
+      date: DateTime.now().subtract(Duration(days: 1)),
     ),
   ];
 
@@ -126,24 +132,37 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      title: Text('Planner'),
+      actions: <Widget>[
+        IconButton(
+            onPressed: () {
+              _startNewTransaction(context);
+            },
+            icon: Icon(
+              Icons.add,
+              color: Colors.white,
+            ))
+      ],
+    );
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Planner'),
-        actions: <Widget>[
-          IconButton(
-              onPressed: () {
-                _startNewTransaction(context);
-              },
-              icon: Icon(Icons.add))
-        ],
-      ),
+      appBar: appBar,
       body: SingleChildScrollView(
           child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Chart(_recentTransactions),
-          TransactionsList(_userTransactions, _deleteTransaction),
+          Container(
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.3,
+              child: Chart(_recentTransactions)),
+          Container(
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.7,
+              child: TransactionsList(_userTransactions, _deleteTransaction)),
         ],
       )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
